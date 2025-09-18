@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.10)
 project(nativdlg LANGUAGES CXX)
 
 if(WIN32)
-    file(GLOB SRC_FILES *.cpp *.h *.rc ${CMAKE_SOURCE_DIR}/*.xpm)
+    file(GLOB SRC_FILES *.cpp *.h nativdlg.rc ${CMAKE_SOURCE_DIR}/*.xpm)
 else()
     file(GLOB SRC_FILES *.cpp *.h ${CMAKE_SOURCE_DIR}/*.xpm)
 endif()

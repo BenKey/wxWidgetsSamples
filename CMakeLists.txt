@@ -11,20 +11,28 @@ endif()
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY_DEBUG ${CMAKE_BINARY_DIR}/lib)
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY_RELEASE ${CMAKE_BINARY_DIR}/lib)
+
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY_DEBUG ${CMAKE_BINARY_DIR}/bin)
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY_RELEASE ${CMAKE_BINARY_DIR}/bin)
+
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_DEBUG ${CMAKE_BINARY_DIR}/bin)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_RELEASE ${CMAKE_BINARY_DIR}/bin)
 
 if(DEFINED ENV{wxWidgets_CONFIGURATION})
-    set(wxWidgets_CONFIGURATION $ENV{wxWidgets_CONFIGURATION})
+  set(wxWidgets_CONFIGURATION $ENV{wxWidgets_CONFIGURATION})
 endif()
 
 find_package(wxWidgets CONFIG REQUIRED)
 
 if(wxWidgets_FOUND)
-    message(STATUS "wxWidgets components: ${wxWidgets_COMPONENTS}")
-    message(STATUS "wxWidgets libraries: ${wxWidgets_LIBRARIES}")
+  message(STATUS "wxWidgets components: ${wxWidgets_COMPONENTS}")
+  message(STATUS "wxWidgets libraries: ${wxWidgets_LIBRARIES}")
 else()
-    message(FATAL_ERROR "wxWidgets not found. Please set wxWidgets_ROOT_DIR or install wxWidgets.")
+  message(FATAL_ERROR "wxWidgets not found. Please set wxWidgets_ROOT_DIR or install wxWidgets.")
 endif()
 
 message(STATUS "CXX standard: ${CMAKE_CXX_STANDARD}")
