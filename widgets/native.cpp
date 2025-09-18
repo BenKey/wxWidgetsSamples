@@ -143,7 +143,7 @@ protected:
 // Avoid a bunch of warnings from gtk.h for some GTK+ versions.
 wxGCC_WARNING_SUPPRESS(deprecated-declarations)
 wxGCC_WARNING_SUPPRESS(parentheses)
-#include <gtk-3.0/gtk.h>
+#include <gtk/gtk.h>
 wxGCC_WARNING_RESTORE(parentheses)
 wxGCC_WARNING_RESTORE(deprecated-declarations)
 

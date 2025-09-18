@@ -12,6 +12,10 @@ else()
   add_executable(widgets ${SRC_FILES})
 endif()
 target_link_libraries(widgets PRIVATE ${wxWidgets_LIBRARIES})
+if (GTK4_FOUND)
+  message(STATUS "Adding GTK libraries for the target 'widgets'.")
+  target_link_libraries(widgets PRIVATE ${GTK4_LIBRARIES})
+endif()  
 add_custom_command(
   TARGET widgets POST_BUILD
   COMMAND ${CMAKE_COMMAND} -E copy_directory 
