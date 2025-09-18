@@ -29,17 +29,31 @@ endif()
 find_package(wxWidgets CONFIG REQUIRED)
 
 find_package(PkgConfig QUIET)
-if (PKG_CONFIG_FOUND)
+if(PKG_CONFIG_FOUND)
   message(STATUS "PkgConfig found.")
-  pkg_check_modules(GTK4 QUIET gtk4)
-  if (GTK4_FOUND)
-    message(STATUS "GTK 4 found.")
-    message(STATUS "GTK include directories: ${GTK4_INCLUDE_DIRS}")
-    message(STATUS "GTK library directories: ${GTK4_LIBRARIES}")
-    include_directories(${GTK4_INCLUDE_DIRS})
+  pkg_check_modules(GTK QUIET gtk4)
+  if(GTK_FOUND)
+    message(STATUS "GTK found.")
+    message(STATUS "GTK include directories: ${GTK_INCLUDE_DIRS}")
+    message(STATUS "GTK library directories: ${GTK_LIBRARIES}")
+    include_directories(${GTK_INCLUDE_DIRS})
   endif()
 else()
   message(STATUS "PkgConfig not found.")  
+endif()
+if(NOT GTK_FOUND)
+  find_path(
+    GTK_INCLUDE_DIRS NAMES gtk/gtk.h
+    HINTS
+    /usr/include
+    /usr/local/include
+    /opt/gnome/include
+    PATH_SUFFIXES
+    gtk-3.0
+    gtk-4.0)
+  if(GTK_INCLUDE_DIRS)
+    message(STATUS "Found GTK include directory: ${GTK_INCLUDE_DIRS}")
+  endif()
 endif()
 
 if(wxWidgets_FOUND)

@@ -12,9 +12,9 @@ else()
   add_executable(widgets ${SRC_FILES})
 endif()
 target_link_libraries(widgets PRIVATE ${wxWidgets_LIBRARIES})
-if (GTK4_FOUND)
+if (GTK_FOUND)
   message(STATUS "Adding GTK libraries for the target 'widgets'.")
-  target_link_libraries(widgets PRIVATE ${GTK4_LIBRARIES})
+  target_link_libraries(widgets PRIVATE ${GTK_LIBRARIES})
 endif()  
 add_custom_command(
   TARGET widgets POST_BUILD
