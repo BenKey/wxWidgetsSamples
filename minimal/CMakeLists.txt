@@ -17,29 +17,27 @@
 cmake_minimum_required(VERSION 3.5...3.31)
 
 if(APPLE AND NOT CMAKE_OSX_DEPLOYMENT_TARGET)
-    # If no deployment target has been set default to the minimum supported
-    # OS version (this has to be set before the first project() call)
-    if(CMAKE_SYSTEM_NAME STREQUAL "iOS")
-        set(CMAKE_OSX_DEPLOYMENT_TARGET 12.0 CACHE STRING "iOS Deployment Target")
-    else()
-        set(CMAKE_OSX_DEPLOYMENT_TARGET 10.10 CACHE STRING "macOS Deployment Target")
-    endif()
+  # If no deployment target has been set default to the minimum supported
+  # OS version (this has to be set before the first project() call)
+  if(CMAKE_SYSTEM_NAME STREQUAL "iOS")
+    set(CMAKE_OSX_DEPLOYMENT_TARGET 12.0 CACHE STRING "iOS Deployment Target")
+  else()
+    set(CMAKE_OSX_DEPLOYMENT_TARGET 10.10 CACHE STRING "macOS Deployment Target")
+  endif()
 endif()
 
 # Name the project
 project(minimal)
 
 # Define a variable containing a list of source files for the project
-set(SRC_FILES
-    minimal.cpp
-)
+set(SRC_FILES minimal.cpp)
 
 if(WIN32)
-    # Include a RC file for windows
-    list(APPEND SRC_FILES ../sample.rc)
+  # Include a RC file for windows
+  list(APPEND SRC_FILES ../sample.rc)
 elseif(APPLE)
-    # Add an icon for the apple .app file
-    list(APPEND SRC_FILES ../../src/osx/carbon/wxmac.icns)
+  # Add an icon for the apple .app file
+  list(APPEND SRC_FILES ../../src/osx/carbon/wxmac.icns)
 endif()
 
 # Define the build target for the executable
@@ -48,16 +46,18 @@ add_executable(${PROJECT_NAME} WIN32 MACOSX_BUNDLE ${SRC_FILES})
 target_link_libraries(${PROJECT_NAME} wxWidgets::wxWidgets)
 
 if(MSVC)
-    # Use manifest from wx.rc
-    set_target_properties(${PROJECT_NAME} PROPERTIES
-        COMPILE_FLAGS "/DwxUSE_RC_MANIFEST"
-        LINK_FLAGS "/MANIFEST:NO"
-    )
+  # Use manifest from wx.rc
+  set_target_properties(
+    ${PROJECT_NAME} PROPERTIES
+    COMPILE_FLAGS "/DwxUSE_RC_MANIFEST"
+    LINK_FLAGS "/MANIFEST:NO"
+  )
 elseif(APPLE)
-    set_target_properties(${PROJECT_NAME} PROPERTIES
-        RESOURCE "../../src/osx/carbon/wxmac.icns"
-        MACOSX_BUNDLE_ICON_FILE wxmac.icns
-        MACOSX_BUNDLE_COPYRIGHT "Copyright wxWidgets"
-        MACOSX_BUNDLE_GUI_IDENTIFIER "org.wxwidgets.minimal"
-    )
+  set_target_properties(
+    ${PROJECT_NAME} PROPERTIES
+    RESOURCE "../../src/osx/carbon/wxmac.icns"
+    MACOSX_BUNDLE_ICON_FILE wxmac.icns
+    MACOSX_BUNDLE_COPYRIGHT "Copyright wxWidgets"
+    MACOSX_BUNDLE_GUI_IDENTIFIER "org.wxwidgets.minimal"
+  )
 endif()
