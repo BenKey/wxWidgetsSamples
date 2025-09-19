@@ -14,6 +14,8 @@ endif()
 target_link_libraries(widgets PRIVATE ${wxWidgets_LIBRARIES})
 if (GTK_FOUND)
   message(STATUS "Adding GTK libraries for the target 'widgets'.")
+  target_include_directories(widgets PRIVATE ${GTK_INCLUDE_DIRS})  
+  target_library_directories(widgets PRIVATE ${GTK_LIBRARY_DIRS})
   target_link_libraries(widgets PRIVATE ${GTK_LIBRARIES})
 endif()  
 add_custom_command(
