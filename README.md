@@ -37,3 +37,9 @@ The following is a list of steps for building the project using [Visual Studio C
 3. Run the "CMake: Select Variant" command.
 4. Run the "CMake: Configure" command.
 5. Run the "CMake: Build" command.
+
+So far the following environments have been tested.
+
+* Visual Studio Professional 2022 Release - amd64
+* GCC 15.2.0 x86_64-w64-mingw32
+* g++ (Ubuntu 11.4.0-1ubuntu1~22.04.2)
