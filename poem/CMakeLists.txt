@@ -7,23 +7,23 @@ else()
   file(GLOB SRC_FILES *.cpp *.h ${CMAKE_SOURCE_DIR}/*.xpm)
 endif()
 if(WIN32)
-  add_executable(poem WIN32 ${SRC_FILES})
+  add_executable(${PROJECT_NAME} WIN32 ${SRC_FILES})
 else()
-  add_executable(poem ${SRC_FILES})
+  add_executable(${PROJECT_NAME} ${SRC_FILES})
 endif()
-target_link_libraries(poem PRIVATE ${wxWidgets_LIBRARIES})
+target_link_libraries(${PROJECT_NAME} PRIVATE ${wxWidgets_LIBRARIES})
 add_custom_command(
-  TARGET poem POST_BUILD
+  TARGET ${PROJECT_NAME} POST_BUILD
   COMMAND ${CMAKE_COMMAND} -E copy
   ${CMAKE_CURRENT_SOURCE_DIR}/wxpoem.dat
   $<TARGET_FILE_DIR:poem>/wxpoem.dat)
 add_custom_command(
-  TARGET poem POST_BUILD
+  TARGET ${PROJECT_NAME} POST_BUILD
   COMMAND ${CMAKE_COMMAND} -E copy
   ${CMAKE_CURRENT_SOURCE_DIR}/wxpoem.idx
   $<TARGET_FILE_DIR:poem>/wxpoem.idx)
 add_custom_command(
-  TARGET poem POST_BUILD
+  TARGET ${PROJECT_NAME} POST_BUILD
   COMMAND ${CMAKE_COMMAND} -E copy
   ${CMAKE_CURRENT_SOURCE_DIR}/wxpoem.txt
   $<TARGET_FILE_DIR:poem>/wxpoem.txt)

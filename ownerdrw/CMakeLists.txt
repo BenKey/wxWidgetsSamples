@@ -3,6 +3,6 @@ project(ownerdrw LANGUAGES CXX)
 
 if(WIN32)
   file(GLOB SRC_FILES *.cpp *.h *.rc ${CMAKE_SOURCE_DIR}/*.xpm)
-  add_executable(ownerdrw WIN32 ${SRC_FILES})
-  target_link_libraries(ownerdrw PRIVATE ${wxWidgets_LIBRARIES})
+  add_executable(${PROJECT_NAME} WIN32 ${SRC_FILES})
+  target_link_libraries(${PROJECT_NAME} PRIVATE ${wxWidgets_LIBRARIES})
 endif()

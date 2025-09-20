@@ -7,28 +7,28 @@ else()
   file(GLOB SRC_FILES *.cpp *.h ${CMAKE_SOURCE_DIR}/*.xpm)
 endif()
 if(WIN32)
-  add_executable(sound WIN32 ${SRC_FILES})
+  add_executable(${PROJECT_NAME} WIN32 ${SRC_FILES})
 else()
-  add_executable(sound ${SRC_FILES})
+  add_executable(${PROJECT_NAME} ${SRC_FILES})
 endif()
-target_link_libraries(sound PRIVATE ${wxWidgets_LIBRARIES})
+target_link_libraries(${PROJECT_NAME} PRIVATE ${wxWidgets_LIBRARIES})
 add_custom_command(
-  TARGET sound POST_BUILD
+  TARGET ${PROJECT_NAME} POST_BUILD
   COMMAND ${CMAKE_COMMAND} -E copy
   ${CMAKE_CURRENT_SOURCE_DIR}/9000g.wav
   $<TARGET_FILE_DIR:sound>/9000g.wav)
 add_custom_command(
-  TARGET sound POST_BUILD
+  TARGET ${PROJECT_NAME} POST_BUILD
   COMMAND ${CMAKE_COMMAND} -E copy
   ${CMAKE_CURRENT_SOURCE_DIR}/cuckoo.wav
   $<TARGET_FILE_DIR:sound>/cuckoo.wav)
 add_custom_command(
-  TARGET sound POST_BUILD
+  TARGET ${PROJECT_NAME} POST_BUILD
   COMMAND ${CMAKE_COMMAND} -E copy
   ${CMAKE_CURRENT_SOURCE_DIR}/doggrowl.wav
   $<TARGET_FILE_DIR:sound>/doggrowl.wav)
 add_custom_command(
-  TARGET sound POST_BUILD
+  TARGET ${PROJECT_NAME} POST_BUILD
   COMMAND ${CMAKE_COMMAND} -E copy
   ${CMAKE_CURRENT_SOURCE_DIR}/tinkalink2.wav
   $<TARGET_FILE_DIR:sound>/tinkalink2.wav)

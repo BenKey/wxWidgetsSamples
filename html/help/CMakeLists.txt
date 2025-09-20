@@ -7,13 +7,13 @@ else()
   file(GLOB SRC_FILES *.cpp *.h ${CMAKE_SOURCE_DIR}/*.xpm)
 endif()
 if(WIN32)
-  add_executable(helpfilesdemo WIN32 ${SRC_FILES})
+  add_executable(${PROJECT_NAME} WIN32 ${SRC_FILES})
 else()
-  add_executable(helpfilesdemo ${SRC_FILES})
+  add_executable(${PROJECT_NAME} ${SRC_FILES})
 endif()
-target_link_libraries(helpfilesdemo PRIVATE ${wxWidgets_LIBRARIES})
+target_link_libraries(${PROJECT_NAME} PRIVATE ${wxWidgets_LIBRARIES})
 add_custom_command(
-  TARGET helpfilesdemo POST_BUILD
+  TARGET ${PROJECT_NAME} POST_BUILD
   COMMAND ${CMAKE_COMMAND} -E copy_directory 
   ${CMAKE_CURRENT_SOURCE_DIR}/helpfiles
   $<TARGET_FILE_DIR:helpfilesdemo>/helpfiles)

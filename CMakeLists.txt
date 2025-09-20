@@ -62,7 +62,7 @@ message(STATUS "Detected c++ compiler: ${CMAKE_CXX_COMPILER}")
 message(STATUS "Detected resource compiler: ${CMAKE_RC_COMPILER}")
 message(STATUS "Linker flags: ${CMAKE_EXE_LINKER_FLAGS}")
 
-add_compile_definitions(_CRT_NON_CONFORMING_SWPRINTFS=1 _CRT_SECURE_NO_DEPRECATE=1  _SCL_SECURE_NO_WARNINGS=1 _UNICODE UNICODE)
+add_compile_definitions(_CRT_NON_CONFORMING_SWPRINTFS=1 _CRT_SECURE_NO_DEPRECATE=1 _SCL_SECURE_NO_WARNINGS=1 _UNICODE UNICODE)
 include_directories(BEFORE ${CMAKE_CURRENT_SOURCE_DIR} ${wxWidgets_INCLUDE_DIRS})
 
 add_subdirectory(access)
