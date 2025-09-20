@@ -11,7 +11,7 @@
 #ifndef __DOODLE_VIEWH__
 #define __DOODLE_VIEWH__
 
-#include "wx/docview.h"
+#include <wx/docview.h>
 
 /*
  * DoodleCanvas is the window that displays the doodle document

@@ -6,7 +6,7 @@
 #define AFX_FILERECEIVETHREAD_H__E8A33FF3_1701_49A6_BFBE_A33792674E8B__INCLUDED_
 
 #ifndef WX_PRECOMP
-    #include "wx/wx.h"
+    #include <wx/wx.h>
 #endif
 
 class CFileReceiveThread : public wxThread  

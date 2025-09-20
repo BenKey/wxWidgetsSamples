@@ -16,7 +16,7 @@
 #ifndef _WX_FONTCTRL_H_
 #define _WX_FONTCTRL_H_
 
-#include "wx/cmndata.h"
+#include <wx/cmndata.h>
 
 /*!
  * A control for displaying a font preview.

@@ -18,8 +18,8 @@
  * Includes
  */
 
-#include "wx/spinctrl.h"
-#include "wx/statline.h"
+#include <wx/spinctrl.h>
+#include <wx/statline.h>
 
 /*!
  * Control identifiers

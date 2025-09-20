@@ -13,8 +13,8 @@
 #pragma implementation "fontctrl.h"
 #endif
 
-#include "wx/wx.h"
-#include "wx/fontdlg.h"
+#include <wx/wx.h>
+#include <wx/fontdlg.h>
 
 #include "fontctrl.h"
 

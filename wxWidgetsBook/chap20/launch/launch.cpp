@@ -9,23 +9,23 @@
 // Licence:     wxWindows Licence
 /////////////////////////////////////////////////////////////////////////////
 
-#include "wx/wx.h"
-#include "wx/process.h"
-#include "wx/mimetype.h"
-#include "wx/filename.h"
-#include "wx/filesys.h"
-#include "wx/utils.h"
+#include <wx/wx.h>
+#include <wx/process.h>
+#include <wx/mimetype.h>
+#include <wx/filename.h>
+#include <wx/filesys.h>
+#include <wx/utils.h>
 
 #include <math.h>
 
 #ifdef __WXMSW__
 #include <windows.h>
-#include "wx/msw/winundef.h"
-#include "wx/msw/private.h"
+#include <wx/msw/winundef.h>
+#include <wx/msw/private.h>
 #endif
 
 #ifdef __WXMAC__
-#include "wx/mac/private.h"
+#include <wx/mac/private.h>
 #ifndef __DARWIN__
 #include "InternetConfig.h"
 #endif

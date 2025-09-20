@@ -6,7 +6,7 @@
 #define AFX_FILESENDTHREAD_H__ECEFB7AD_309F_4BF6_B245_DA142EE0CCD7__INCLUDED_
 
 #ifndef WX_PRECOMP
-    #include "wx/wx.h"
+    #include <wx/wx.h>
 #endif
 
 class CFileSendThread : public wxThread  

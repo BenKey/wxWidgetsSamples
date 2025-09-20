@@ -9,30 +9,30 @@
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////
 
-#include "wx/wxprec.h"
+#include <wx/wxprec.h>
 
 #ifdef __BORLANDC__
 #pragma hdrstop
 #endif
 
 #ifndef WX_PRECOMP
-#include "wx/wx.h"
+#include <wx/wx.h>
 #endif
 
-#include "wx/intl.h"
-#include "wx/log.h"
+#include <wx/intl.h>
+#include <wx/log.h>
 
-#include "wx/dnd.h"
-#include "wx/dirdlg.h"
-#include "wx/filedlg.h"
-#include "wx/image.h"
-#include "wx/clipbrd.h"
-#include "wx/colordlg.h"
-#include "wx/sizer.h"
-#include "wx/dataobj.h"
+#include <wx/dnd.h>
+#include <wx/dirdlg.h>
+#include <wx/filedlg.h>
+#include <wx/image.h>
+#include <wx/clipbrd.h>
+#include <wx/colordlg.h>
+#include <wx/sizer.h>
+#include <wx/dataobj.h>
 
 #if wxUSE_METAFILES
-    #include "wx/metafile.h"
+    #include <wx/metafile.h>
 #endif // wxUSE_METAFILES
 
 #if defined(__WXGTK__) || defined(__WXX11__) || defined(__WXMOTIF__) || defined(__WXMAC__)
@@ -912,7 +912,7 @@ bool DnDApp::OnInit()
 
     // create the main frame window
     DnDFrame *frame = new DnDFrame((wxFrame  *) NULL,
-                                   _T("Drag-and-Drop/Clipboard wxWidgets Sample"),
+                                   (wxChar*) _T("Drag-and-Drop/Clipboard wxWidgets Sample"),
                                    10, 100, 650, 340);
 
     // activate it

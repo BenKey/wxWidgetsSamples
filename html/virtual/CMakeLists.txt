@@ -16,4 +16,4 @@ add_custom_command(
   TARGET ${PROJECT_NAME} POST_BUILD
   COMMAND ${CMAKE_COMMAND} -E copy
   ${CMAKE_CURRENT_SOURCE_DIR}/start.htm
-  $<TARGET_FILE_DIR:html-virtual>/virtual/start.htm)
+  $<TARGET_FILE_DIR:html-virtual>/html-virtual/start.htm)

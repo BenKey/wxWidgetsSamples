@@ -1,5 +1,5 @@
-#include "wx/wx.h"
-#include "wx/filefn.h"
+#include <wx/wx.h>
+#include <wx/filefn.h>
 
 // Find the absolute path where this application has been run from.
 // argv0 is wxTheApp->argv[0]

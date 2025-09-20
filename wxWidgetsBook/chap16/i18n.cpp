@@ -17,8 +17,8 @@
 // headers
 // ----------------------------------------------------------------------------
 
-// For compilers that support precompilation, includes "wx/wx.h".
-#include "wx/wxprec.h"
+// For compilers that support precompilation, includes <wx/wx.h>.
+#include <wx/wxprec.h>
 
 #ifdef __BORLANDC__
     #pragma hdrstop
@@ -27,13 +27,13 @@
 // for all others, include the necessary headers (this file is usually all you
 // need because it includes almost all "standard" wxWidgets headers)
 #ifndef WX_PRECOMP
-    #include "wx/wx.h"
+    #include <wx/wx.h>
 #endif
 
-#include "wx/datetime.h"
-#include "wx/image.h"
-#include "wx/filename.h"
-#include "wx/stdpaths.h"
+#include <wx/datetime.h>
+#include <wx/image.h>
+#include <wx/filename.h>
+#include <wx/stdpaths.h>
 
 // ----------------------------------------------------------------------------
 // resources

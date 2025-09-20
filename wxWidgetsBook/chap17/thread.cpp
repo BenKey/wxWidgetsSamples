@@ -11,26 +11,26 @@
 
 #include <cstdint>
 
-// For compilers that support precompilation, includes "wx/wx.h".
-#include "wx/wxprec.h"
+// For compilers that support precompilation, includes <wx/wx.h>.
+#include <wx/wxprec.h>
 
 #ifdef __BORLANDC__
     #pragma hdrstop
 #endif
 
 #ifndef WX_PRECOMP
-    #include "wx/wx.h"
+    #include <wx/wx.h>
 #endif
 
 #if !wxUSE_THREADS
     #error "This sample requires thread support!"
 #endif // wxUSE_THREADS
 
-#include "wx/thread.h"
-#include "wx/dynarray.h"
-#include "wx/numdlg.h"
+#include <wx/thread.h>
+#include <wx/dynarray.h>
+#include <wx/numdlg.h>
 
-#include "wx/progdlg.h"
+#include <wx/progdlg.h>
 
 #include "sample.xpm"
 

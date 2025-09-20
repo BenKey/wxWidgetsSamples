@@ -11,10 +11,10 @@
 #pragma implementation "personalrecord.h"
 #endif
 
-#include "wx/wx.h"
+#include <wx/wx.h>
 
-#include "wx/valtext.h"
-#include "wx/valgen.h"
+#include <wx/valtext.h>
+#include <wx/valgen.h>
 
 #include "personalrecord.h"
 

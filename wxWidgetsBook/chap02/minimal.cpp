@@ -2,7 +2,7 @@
 // Purpose:     Minimal wxWidgets sample
 // Author:      Julian Smart
 
-#include "wx/wx.h"
+#include <wx/wx.h>
 
 // Declare the application class
 class MyApp : public wxApp

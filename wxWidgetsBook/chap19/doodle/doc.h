@@ -11,8 +11,8 @@
 #ifndef __DOODLE_DOCH__
 #define __DOODLE_DOCH__
 
-#include "wx/docview.h"
-#include "wx/cmdproc.h"
+#include <wx/docview.h>
+#include <wx/cmdproc.h>
 
 /*
  * Defines a line from one point to the other

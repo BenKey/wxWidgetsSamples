@@ -18,6 +18,11 @@ if(DEFINED ENV{wxWidgets_CONFIGURATION})
   set(wxWidgets_CONFIGURATION $ENV{wxWidgets_CONFIGURATION})
 endif()
 
+if(DEFINED VCPKG_INSTALLED_DIR AND DEFINED VCPKG_TARGET_TRIPLET)
+  set(VCPKG_INCLUDE_DIR ${VCPKG_INSTALLED_DIR}/${VCPKG_TARGET_TRIPLET}/include)
+  message(STATUS "VCPKG_INCLUDE_DIR: ${VCPKG_INCLUDE_DIR}")
+endif()
+
 find_package(wxWidgets CONFIG REQUIRED)
 if(wxWidgets_FOUND)
   message(STATUS "wxWidgets components: ${wxWidgets_COMPONENTS}")
@@ -153,8 +158,9 @@ if(wxWidgets_webview_FOUND)
   add_subdirectory(webview)
 endif()
 
-if(MSVC)
+if(MSVC AND WIN32)
   add_subdirectory(debugrpt)
+  add_subdirectory(mfc)
 endif()
 
 if(WIN32)

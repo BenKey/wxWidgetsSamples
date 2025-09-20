@@ -16,9 +16,9 @@ add_custom_command(
   TARGET ${PROJECT_NAME} POST_BUILD
   COMMAND ${CMAKE_COMMAND} -E copy
   ${CMAKE_CURRENT_SOURCE_DIR}/logo6.gif
-  $<TARGET_FILE_DIR:html-printing>/printing/logo6.gif)
+  $<TARGET_FILE_DIR:html-printing>/html-printing/logo6.gif)
 add_custom_command(
   TARGET ${PROJECT_NAME} POST_BUILD
   COMMAND ${CMAKE_COMMAND} -E copy
   ${CMAKE_CURRENT_SOURCE_DIR}/test.htm
-  $<TARGET_FILE_DIR:html-printing>/printing/test.htm)
+  $<TARGET_FILE_DIR:html-printing>/html-printing/test.htm)

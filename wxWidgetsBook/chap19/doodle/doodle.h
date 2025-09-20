@@ -11,7 +11,7 @@
 #ifndef __DOODLEH__
 #define __DOODLEH__
 
-#include "wx/docview.h"
+#include <wx/docview.h>
 
 class wxDocManager;
 

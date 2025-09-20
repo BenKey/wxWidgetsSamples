@@ -3,7 +3,7 @@
 // Author:      Julian Smart
 // License:     wxWindows License
 
-#include "wx/wx.h"
+#include <wx/wx.h>
 #include "personalrecord.h"
 
 // Declare the application class
