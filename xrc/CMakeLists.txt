@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.10)
+cmake_minimum_required(VERSION 3.15)
 project(xrcdemo LANGUAGES CXX)
 
 if(WIN32)
@@ -16,4 +16,4 @@ add_custom_command(
   TARGET xrcdemo POST_BUILD
   COMMAND ${CMAKE_COMMAND} -E copy_directory 
   ${CMAKE_CURRENT_SOURCE_DIR}/rc
-  ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/rc)
+  $<TARGET_FILE_DIR:xrcdemo>/rc)

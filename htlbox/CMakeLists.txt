@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.10)
+cmake_minimum_required(VERSION 3.15)
 project(htlbox LANGUAGES CXX)
 
 if(WIN32)
@@ -16,4 +16,4 @@ add_custom_command(
   TARGET htlbox POST_BUILD
   COMMAND ${CMAKE_COMMAND} -E copy
   ${CMAKE_CURRENT_SOURCE_DIR}/results
-  ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/results)
+  $<TARGET_FILE_DIR:htlbox>/results)

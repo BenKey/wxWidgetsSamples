@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.10)
+cmake_minimum_required(VERSION 3.15)
 project(forty LANGUAGES CXX)
 
 if(WIN32)
@@ -16,4 +16,4 @@ add_custom_command(
   TARGET forty POST_BUILD
   COMMAND ${CMAKE_COMMAND} -E copy
   ${CMAKE_CURRENT_SOURCE_DIR}/about.htm
-  ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/about.htm)
+  $<TARGET_FILE_DIR:forty>/about.htm)

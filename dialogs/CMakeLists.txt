@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.10)
+cmake_minimum_required(VERSION 3.15)
 project(dialogs LANGUAGES CXX)
 
 if(WIN32)
@@ -16,9 +16,9 @@ add_custom_command(
   TARGET dialogs POST_BUILD
   COMMAND ${CMAKE_COMMAND} -E copy
   ${CMAKE_CURRENT_SOURCE_DIR}/tip.xpm
-  ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/tip.xpm)
+  $<TARGET_FILE_DIR:dialogs>/tip.xpm)
 add_custom_command(
   TARGET dialogs POST_BUILD
   COMMAND ${CMAKE_COMMAND} -E copy
   ${CMAKE_CURRENT_SOURCE_DIR}/tips.txt
-  ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/tips.txt)
+  $<TARGET_FILE_DIR:dialogs>/tips.txt)

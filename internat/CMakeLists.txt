@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.10)
+cmake_minimum_required(VERSION 3.15)
 project(internat LANGUAGES CXX)
 
 if(WIN32)
@@ -16,59 +16,59 @@ add_custom_command(
   TARGET internat POST_BUILD
   COMMAND ${CMAKE_COMMAND} -E copy_directory 
   ${CMAKE_CURRENT_SOURCE_DIR}/ar
-  ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/ar)
+  $<TARGET_FILE_DIR:internat>/ar)
 add_custom_command(
   TARGET internat POST_BUILD
   COMMAND ${CMAKE_COMMAND} -E copy_directory 
   ${CMAKE_CURRENT_SOURCE_DIR}/bg
-  ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/bg)
+  $<TARGET_FILE_DIR:internat>/bg)
 add_custom_command(
   TARGET internat POST_BUILD
   COMMAND ${CMAKE_COMMAND} -E copy_directory 
   ${CMAKE_CURRENT_SOURCE_DIR}/cs
-  ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/cs)
+  $<TARGET_FILE_DIR:internat>/cs)
 add_custom_command(
   TARGET internat POST_BUILD
   COMMAND ${CMAKE_COMMAND} -E copy_directory 
   ${CMAKE_CURRENT_SOURCE_DIR}/de
-  ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/de)
+  $<TARGET_FILE_DIR:internat>/de)
 add_custom_command(
   TARGET internat POST_BUILD
   COMMAND ${CMAKE_COMMAND} -E copy_directory 
   ${CMAKE_CURRENT_SOURCE_DIR}/fr
-  ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/fr)
+  $<TARGET_FILE_DIR:internat>/fr)
 add_custom_command(
   TARGET internat POST_BUILD
   COMMAND ${CMAKE_COMMAND} -E copy_directory 
   ${CMAKE_CURRENT_SOURCE_DIR}/it
-  ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/it)
+  $<TARGET_FILE_DIR:internat>/it)
 add_custom_command(
   TARGET internat POST_BUILD
   COMMAND ${CMAKE_COMMAND} -E copy_directory 
   ${CMAKE_CURRENT_SOURCE_DIR}/ja
-  ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/ja)
+  $<TARGET_FILE_DIR:internat>/ja)
 add_custom_command(
   TARGET internat POST_BUILD
   COMMAND ${CMAKE_COMMAND} -E copy_directory 
   ${CMAKE_CURRENT_SOURCE_DIR}/ja_JP.EUC-JP
-  ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/ja_JP.EUC-JP)
+  $<TARGET_FILE_DIR:internat>/ja_JP.EUC-JP)
 add_custom_command(
   TARGET internat POST_BUILD
   COMMAND ${CMAKE_COMMAND} -E copy_directory 
   ${CMAKE_CURRENT_SOURCE_DIR}/ka
-  ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/ka)
+  $<TARGET_FILE_DIR:internat>/ka)
 add_custom_command(
   TARGET internat POST_BUILD
   COMMAND ${CMAKE_COMMAND} -E copy_directory 
   ${CMAKE_CURRENT_SOURCE_DIR}/pl
-  ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/pl)
+  $<TARGET_FILE_DIR:internat>/pl)
 add_custom_command(
   TARGET internat POST_BUILD
   COMMAND ${CMAKE_COMMAND} -E copy_directory 
   ${CMAKE_CURRENT_SOURCE_DIR}/ru
-  ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/ru)
+  $<TARGET_FILE_DIR:internat>/ru)
 add_custom_command(
   TARGET internat POST_BUILD
   COMMAND ${CMAKE_COMMAND} -E copy_directory 
   ${CMAKE_CURRENT_SOURCE_DIR}/sv
-  ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/sv)
+  $<TARGET_FILE_DIR:internat>/sv)

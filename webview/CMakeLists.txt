@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.10)
+cmake_minimum_required(VERSION 3.15)
 project(webview LANGUAGES CXX)
 
 if(wxWidgets_webview_FOUND)
@@ -17,5 +17,5 @@ if(wxWidgets_webview_FOUND)
     TARGET webview POST_BUILD
     COMMAND ${CMAKE_COMMAND} -E copy
     ${CMAKE_CURRENT_SOURCE_DIR}/handler_advanced.html
-    ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/handler_advanced.html)
+    $<TARGET_FILE_DIR:webview>/handler_advanced.html)
 endif()

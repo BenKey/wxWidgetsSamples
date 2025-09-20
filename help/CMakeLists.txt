@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.10)
+cmake_minimum_required(VERSION 3.15)
 project(helpdemo LANGUAGES CXX)
 
 if(WIN32)
@@ -16,14 +16,14 @@ add_custom_command(
   TARGET helpdemo POST_BUILD
   COMMAND ${CMAKE_COMMAND} -E copy
   ${CMAKE_CURRENT_SOURCE_DIR}/doc.hlp
-  ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/doc.hlp)
+  $<TARGET_FILE_DIR:helpdemo>/doc.hlp)
 add_custom_command(
   TARGET helpdemo POST_BUILD
   COMMAND ${CMAKE_COMMAND} -E copy
   ${CMAKE_CURRENT_SOURCE_DIR}/doc.chm
-  ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/doc.chm)
+  $<TARGET_FILE_DIR:helpdemo>/doc.chm)
 add_custom_command(
   TARGET helpdemo POST_BUILD
   COMMAND ${CMAKE_COMMAND} -E copy
   ${CMAKE_CURRENT_SOURCE_DIR}/doc.zip
-  ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/doc.zip)
+  $<TARGET_FILE_DIR:helpdemo>/doc.zip)

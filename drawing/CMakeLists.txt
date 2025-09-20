@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.10)
+cmake_minimum_required(VERSION 3.15)
 project(drawing LANGUAGES CXX)
 
 if(WIN32)
@@ -16,39 +16,39 @@ add_custom_command(
   TARGET drawing POST_BUILD
   COMMAND ${CMAKE_COMMAND} -E copy
   ${CMAKE_CURRENT_SOURCE_DIR}/cursor_2x.xpm
-  ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/cursor_2x.xpm)
+  $<TARGET_FILE_DIR:drawing>/cursor_2x.xpm)
 add_custom_command(
   TARGET drawing POST_BUILD
   COMMAND ${CMAKE_COMMAND} -E copy
   ${CMAKE_CURRENT_SOURCE_DIR}/cursor.xpm
-  ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/cursor.xpm)
+  $<TARGET_FILE_DIR:drawing>/cursor.xpm)
 add_custom_command(
   TARGET drawing POST_BUILD
   COMMAND ${CMAKE_COMMAND} -E copy
   ${CMAKE_CURRENT_SOURCE_DIR}/image.bmp
-  ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/image.bmp)
+  $<TARGET_FILE_DIR:drawing>/image.bmp)
 add_custom_command(
   TARGET drawing POST_BUILD
   COMMAND ${CMAKE_COMMAND} -E copy
   ${CMAKE_CURRENT_SOURCE_DIR}/mask.bmp
-  ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/mask.bmp)
+  $<TARGET_FILE_DIR:drawing>/mask.bmp)
 add_custom_command(
   TARGET drawing POST_BUILD
   COMMAND ${CMAKE_COMMAND} -E copy
   ${CMAKE_CURRENT_SOURCE_DIR}/pat4.bmp
-  ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/pat4.bmp)
+  $<TARGET_FILE_DIR:drawing>/pat4.bmp)
 add_custom_command(
   TARGET drawing POST_BUILD
   COMMAND ${CMAKE_COMMAND} -E copy
   ${CMAKE_CURRENT_SOURCE_DIR}/pat35.bmp
-  ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/pat35.bmp)
+  $<TARGET_FILE_DIR:drawing>/pat35.bmp)
 add_custom_command(
   TARGET drawing POST_BUILD
   COMMAND ${CMAKE_COMMAND} -E copy
   ${CMAKE_CURRENT_SOURCE_DIR}/pat36.bmp
-  ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/pat36.bmp)
+  $<TARGET_FILE_DIR:drawing>/pat36.bmp)
 add_custom_command(
   TARGET drawing POST_BUILD
   COMMAND ${CMAKE_COMMAND} -E copy
   ${CMAKE_CURRENT_SOURCE_DIR}/smile.xpm
-  ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/smile.xpm)
+  $<TARGET_FILE_DIR:drawing>/smile.xpm)

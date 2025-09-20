@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.10)
+cmake_minimum_required(VERSION 3.15)
 project(widgets LANGUAGES CXX)
 
 if(WIN32)
@@ -22,4 +22,4 @@ add_custom_command(
   TARGET widgets POST_BUILD
   COMMAND ${CMAKE_COMMAND} -E copy_directory 
   ${CMAKE_CURRENT_SOURCE_DIR}/icons
-  ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/icons)
+  $<TARGET_FILE_DIR:widgets>/icons)

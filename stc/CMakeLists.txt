@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.10)
+cmake_minimum_required(VERSION 3.15)
 project(stctest LANGUAGES CXX)
 
 if(wxWidgets_stc_FOUND)
@@ -17,5 +17,5 @@ if(wxWidgets_stc_FOUND)
     TARGET stctest POST_BUILD
     COMMAND ${CMAKE_COMMAND} -E copy
     ${CMAKE_CURRENT_SOURCE_DIR}/stctest.cpp
-    ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/stctest.cpp)
+    $<TARGET_FILE_DIR:stctest>/stctest.cpp)
 endif()

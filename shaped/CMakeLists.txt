@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.10)
+cmake_minimum_required(VERSION 3.15)
 project(shaped LANGUAGES CXX)
 
 if(WIN32)
@@ -16,4 +16,4 @@ add_custom_command(
   TARGET shaped POST_BUILD
   COMMAND ${CMAKE_COMMAND} -E copy
   ${CMAKE_CURRENT_SOURCE_DIR}/star.png
-  ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/star.png)
+  $<TARGET_FILE_DIR:shaped>/star.png)

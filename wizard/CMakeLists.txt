@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.10)
+cmake_minimum_required(VERSION 3.15)
 project(wizard LANGUAGES CXX)
 
 if(WIN32)
@@ -16,9 +16,9 @@ add_custom_command(
   TARGET wizard POST_BUILD
   COMMAND ${CMAKE_COMMAND} -E copy
   ${CMAKE_CURRENT_SOURCE_DIR}/wiztest.svg
-  ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/wiztest.svg)
+  $<TARGET_FILE_DIR:wizard>/wiztest.svg)
 add_custom_command(
   TARGET wizard POST_BUILD
   COMMAND ${CMAKE_COMMAND} -E copy
   ${CMAKE_CURRENT_SOURCE_DIR}/wiztest2.svg
-  ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/wiztest2.svg)
+  $<TARGET_FILE_DIR:wizard>/wiztest2.svg)

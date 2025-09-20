@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.10)
+cmake_minimum_required(VERSION 3.15)
 project(dragimag LANGUAGES CXX)
 
 if(WIN32)
@@ -16,29 +16,29 @@ add_custom_command(
   TARGET dragimag POST_BUILD
   COMMAND ${CMAKE_COMMAND} -E copy
   ${CMAKE_CURRENT_SOURCE_DIR}/backgrnd.png
-  ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/backgrnd.png)
+  $<TARGET_FILE_DIR:dragimag>/backgrnd.png)
 add_custom_command(
   TARGET dragimag POST_BUILD
   COMMAND ${CMAKE_COMMAND} -E copy
   ${CMAKE_CURRENT_SOURCE_DIR}/dragicon.ico
-  ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/dragicon.ico)
+  $<TARGET_FILE_DIR:dragimag>/dragicon.ico)
 add_custom_command(
   TARGET dragimag POST_BUILD
   COMMAND ${CMAKE_COMMAND} -E copy
   ${CMAKE_CURRENT_SOURCE_DIR}/dragicon.xpm
-  ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/dragicon.xpm)
+  $<TARGET_FILE_DIR:dragimag>/dragicon.xpm)
 add_custom_command(
   TARGET dragimag POST_BUILD
   COMMAND ${CMAKE_COMMAND} -E copy
   ${CMAKE_CURRENT_SOURCE_DIR}/shape01.png
-  ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/shape01.png)
+  $<TARGET_FILE_DIR:dragimag>/shape01.png)
 add_custom_command(
   TARGET dragimag POST_BUILD
   COMMAND ${CMAKE_COMMAND} -E copy
   ${CMAKE_CURRENT_SOURCE_DIR}/shape02.png
-  ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/shape02.png)
+  $<TARGET_FILE_DIR:dragimag>/shape02.png)
 add_custom_command(
   TARGET dragimag POST_BUILD
   COMMAND ${CMAKE_COMMAND} -E copy
   ${CMAKE_CURRENT_SOURCE_DIR}/shape03.png
-  ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/shape03.png)
+  $<TARGET_FILE_DIR:dragimag>/shape03.png)

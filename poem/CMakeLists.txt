@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.10)
+cmake_minimum_required(VERSION 3.15)
 project(poem LANGUAGES CXX)
 
 if(WIN32)
@@ -16,14 +16,14 @@ add_custom_command(
   TARGET poem POST_BUILD
   COMMAND ${CMAKE_COMMAND} -E copy
   ${CMAKE_CURRENT_SOURCE_DIR}/wxpoem.dat
-  ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/wxpoem.dat)
+  $<TARGET_FILE_DIR:poem>/wxpoem.dat)
 add_custom_command(
   TARGET poem POST_BUILD
   COMMAND ${CMAKE_COMMAND} -E copy
   ${CMAKE_CURRENT_SOURCE_DIR}/wxpoem.idx
-  ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/wxpoem.idx)
+  $<TARGET_FILE_DIR:poem>/wxpoem.idx)
 add_custom_command(
   TARGET poem POST_BUILD
   COMMAND ${CMAKE_COMMAND} -E copy
   ${CMAKE_CURRENT_SOURCE_DIR}/wxpoem.txt
-  ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/wxpoem.txt)
+  $<TARGET_FILE_DIR:poem>/wxpoem.txt)

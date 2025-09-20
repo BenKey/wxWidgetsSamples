@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.10)
+cmake_minimum_required(VERSION 3.15)
 project(sound LANGUAGES CXX)
 
 if(WIN32)
@@ -16,19 +16,19 @@ add_custom_command(
   TARGET sound POST_BUILD
   COMMAND ${CMAKE_COMMAND} -E copy
   ${CMAKE_CURRENT_SOURCE_DIR}/9000g.wav
-  ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/9000g.wav)
+  $<TARGET_FILE_DIR:sound>/9000g.wav)
 add_custom_command(
   TARGET sound POST_BUILD
   COMMAND ${CMAKE_COMMAND} -E copy
   ${CMAKE_CURRENT_SOURCE_DIR}/cuckoo.wav
-  ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/cuckoo.wav)
+  $<TARGET_FILE_DIR:sound>/cuckoo.wav)
 add_custom_command(
   TARGET sound POST_BUILD
   COMMAND ${CMAKE_COMMAND} -E copy
   ${CMAKE_CURRENT_SOURCE_DIR}/doggrowl.wav
-  ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/doggrowl.wav)
+  $<TARGET_FILE_DIR:sound>/doggrowl.wav)
 add_custom_command(
   TARGET sound POST_BUILD
   COMMAND ${CMAKE_COMMAND} -E copy
   ${CMAKE_CURRENT_SOURCE_DIR}/tinkalink2.wav
-  ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/tinkalink2.wav)
+  $<TARGET_FILE_DIR:sound>/tinkalink2.wav)

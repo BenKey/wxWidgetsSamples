@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.10)
+cmake_minimum_required(VERSION 3.15)
 project(combo LANGUAGES CXX)
 
 if(WIN32)
@@ -16,19 +16,19 @@ add_custom_command(
   TARGET combo POST_BUILD
   COMMAND ${CMAKE_COMMAND} -E copy
   ${CMAKE_CURRENT_SOURCE_DIR}/dropbuth.svg
-  ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/dropbuth.svg)
+  $<TARGET_FILE_DIR:combo>/dropbuth.svg)
 add_custom_command(
   TARGET combo POST_BUILD
   COMMAND ${CMAKE_COMMAND} -E copy
   ${CMAKE_CURRENT_SOURCE_DIR}/dropbutn.svg
-  ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/dropbutn.svg)
+  $<TARGET_FILE_DIR:combo>/dropbutn.svg)
 add_custom_command(
   TARGET combo POST_BUILD
   COMMAND ${CMAKE_COMMAND} -E copy
   ${CMAKE_CURRENT_SOURCE_DIR}/dropbutp.svg
-  ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/dropbutp.svg)
+  $<TARGET_FILE_DIR:combo>/dropbutp.svg)
 add_custom_command(
   TARGET combo POST_BUILD
   COMMAND ${CMAKE_COMMAND} -E copy
   ${CMAKE_CURRENT_SOURCE_DIR}/three-dots.svg
-  ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/three-dots.svg)
+  $<TARGET_FILE_DIR:combo>/three-dots.svg)

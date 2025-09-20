@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.10)
+cmake_minimum_required(VERSION 3.15)
 project(propgrid LANGUAGES CXX)
 
 if(WIN32)
@@ -16,4 +16,4 @@ add_custom_command(
   TARGET propgrid POST_BUILD
   COMMAND ${CMAKE_COMMAND} -E copy
   ${CMAKE_CURRENT_SOURCE_DIR}/propgrid.xrc
-  ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/propgrid.xrc)
+  $<TARGET_FILE_DIR:propgrid>/propgrid.xrc)

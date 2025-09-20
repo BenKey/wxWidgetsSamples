@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.10)
+cmake_minimum_required(VERSION 3.15)
 project(dnd LANGUAGES CXX)
 
 if(WIN32)
@@ -16,39 +16,39 @@ add_custom_command(
   TARGET dnd POST_BUILD
   COMMAND ${CMAKE_COMMAND} -E copy
   ${CMAKE_CURRENT_SOURCE_DIR}/d_and_d.txt
-  ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/d_and_d.txt)
+  $<TARGET_FILE_DIR:dnd>/d_and_d.txt)
 add_custom_command(
   TARGET dnd POST_BUILD
   COMMAND ${CMAKE_COMMAND} -E copy
   ${CMAKE_CURRENT_SOURCE_DIR}/dnd_copy.cur
-  ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/dnd_copy.cur)
+  $<TARGET_FILE_DIR:dnd>/dnd_copy.cur)
 add_custom_command(
   TARGET dnd POST_BUILD
   COMMAND ${CMAKE_COMMAND} -E copy
   ${CMAKE_CURRENT_SOURCE_DIR}/dnd_copy.xpm
-  ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/dnd_copy.xpm)
+  $<TARGET_FILE_DIR:dnd>/dnd_copy.xpm)
 add_custom_command(
   TARGET dnd POST_BUILD
   COMMAND ${CMAKE_COMMAND} -E copy
   ${CMAKE_CURRENT_SOURCE_DIR}/dnd_move.cur
-  ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/dnd_move.cur)
+  $<TARGET_FILE_DIR:dnd>/dnd_move.cur)
 add_custom_command(
   TARGET dnd POST_BUILD
   COMMAND ${CMAKE_COMMAND} -E copy
   ${CMAKE_CURRENT_SOURCE_DIR}/dnd_move.xpm
-  ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/dnd_move.xpm)
+  $<TARGET_FILE_DIR:dnd>/dnd_move.xpm)
 add_custom_command(
   TARGET dnd POST_BUILD
   COMMAND ${CMAKE_COMMAND} -E copy
   ${CMAKE_CURRENT_SOURCE_DIR}/dnd_none.cur
-  ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/dnd_none.cur)
+  $<TARGET_FILE_DIR:dnd>/dnd_none.cur)
 add_custom_command(
   TARGET dnd POST_BUILD
   COMMAND ${CMAKE_COMMAND} -E copy
   ${CMAKE_CURRENT_SOURCE_DIR}/dnd_none.xpm
-  ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/dnd_none.xpm)
+  $<TARGET_FILE_DIR:dnd>/dnd_none.xpm)
 add_custom_command(
   TARGET dnd POST_BUILD
   COMMAND ${CMAKE_COMMAND} -E copy
   ${CMAKE_CURRENT_SOURCE_DIR}/wxwin.png
-  ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/wxwin.png)
+  $<TARGET_FILE_DIR:dnd>/wxwin.png)

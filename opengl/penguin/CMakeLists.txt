@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.10)
+cmake_minimum_required(VERSION 3.15)
 project(penguin LANGUAGES CXX C)
 
 if(WIN32)
@@ -16,4 +16,4 @@ add_custom_command(
   TARGET penguin POST_BUILD
   COMMAND ${CMAKE_COMMAND} -E copy
   ${CMAKE_CURRENT_SOURCE_DIR}/penguin.dxf.gz
-  ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/penguin.dxf.gz)
+  $<TARGET_FILE_DIR:penguin>/penguin.dxf.gz)

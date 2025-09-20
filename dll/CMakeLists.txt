@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.10)
+cmake_minimum_required(VERSION 3.15)
 project(dll LANGUAGES CXX)
 if(WIN32 AND wxWidgets_USE_STATIC)
   add_library(my_dll SHARED my_dll.cpp my_dll.h)

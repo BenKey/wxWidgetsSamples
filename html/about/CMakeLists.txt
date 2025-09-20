@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.10)
+cmake_minimum_required(VERSION 3.15)
 project(about LANGUAGES CXX)
 
 if(WIN32)
@@ -16,4 +16,4 @@ add_custom_command(
   TARGET about POST_BUILD
   COMMAND ${CMAKE_COMMAND} -E copy_directory 
   ${CMAKE_CURRENT_SOURCE_DIR}/data
-  ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/data)
+  $<TARGET_FILE_DIR:about>/data)

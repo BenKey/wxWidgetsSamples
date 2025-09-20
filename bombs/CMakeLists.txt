@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.10)
+cmake_minimum_required(VERSION 3.15)
 project(bombs LANGUAGES CXX)
 
 if(WIN32)
@@ -16,9 +16,9 @@ add_custom_command(
   TARGET bombs POST_BUILD
   COMMAND ${CMAKE_COMMAND} -E copy
   ${CMAKE_CURRENT_SOURCE_DIR}/bombs.ico
-  ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/bombs.ico)
+  $<TARGET_FILE_DIR:bombs>/bombs.ico)
 add_custom_command(
   TARGET bombs POST_BUILD
   COMMAND ${CMAKE_COMMAND} -E copy
   ${CMAKE_CURRENT_SOURCE_DIR}/bombs.xpm
-  ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/bombs.xpm)
+  $<TARGET_FILE_DIR:bombs>/bombs.xpm)

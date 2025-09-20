@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.10)
+cmake_minimum_required(VERSION 3.15)
 project(griddemo LANGUAGES CXX)
 
 if(WIN32)
@@ -16,9 +16,9 @@ add_custom_command(
   TARGET griddemo POST_BUILD
   COMMAND ${CMAKE_COMMAND} -E copy
   ${CMAKE_CURRENT_SOURCE_DIR}/bitmap1.bmp
-  ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/bitmap1.bmp)
+  $<TARGET_FILE_DIR:griddemo>/bitmap1.bmp)
 add_custom_command(
   TARGET griddemo POST_BUILD
   COMMAND ${CMAKE_COMMAND} -E copy
   ${CMAKE_CURRENT_SOURCE_DIR}/bitmap2.bmp
-  ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/bitmap2.bmp)
+  $<TARGET_FILE_DIR:griddemo>/bitmap2.bmp)

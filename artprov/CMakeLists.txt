@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.10)
+cmake_minimum_required(VERSION 3.15)
 project(arttest LANGUAGES CXX)
 
 if(WIN32)
@@ -16,24 +16,24 @@ add_custom_command(
   TARGET arttest POST_BUILD
   COMMAND ${CMAKE_COMMAND} -E copy
   ${CMAKE_CURRENT_SOURCE_DIR}/error.xpm
-  ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/error.xpm)
+  $<TARGET_FILE_DIR:arttest>/error.xpm)
 add_custom_command(
   TARGET arttest POST_BUILD
   COMMAND ${CMAKE_COMMAND} -E copy
   ${CMAKE_CURRENT_SOURCE_DIR}/info.xpm
-  ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/info.xpm)
+  $<TARGET_FILE_DIR:arttest>/info.xpm)
 add_custom_command(
   TARGET arttest POST_BUILD
   COMMAND ${CMAKE_COMMAND} -E copy
   ${CMAKE_CURRENT_SOURCE_DIR}/null.xpm
-  ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/null.xpm)
+  $<TARGET_FILE_DIR:arttest>/null.xpm)
 add_custom_command(
   TARGET arttest POST_BUILD
   COMMAND ${CMAKE_COMMAND} -E copy
   ${CMAKE_CURRENT_SOURCE_DIR}/question.xpm
-  ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/question.xpm)
+  $<TARGET_FILE_DIR:arttest>/question.xpm)
 add_custom_command(
   TARGET arttest POST_BUILD
   COMMAND ${CMAKE_COMMAND} -E copy
   ${CMAKE_CURRENT_SOURCE_DIR}/warning.xpm
-  ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/warning.xpm)
+  $<TARGET_FILE_DIR:arttest>/warning.xpm)

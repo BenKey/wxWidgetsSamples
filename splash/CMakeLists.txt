@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.10)
+cmake_minimum_required(VERSION 3.15)
 project(splash LANGUAGES CXX)
 
 if(WIN32)
@@ -16,19 +16,19 @@ add_custom_command(
   TARGET splash POST_BUILD
   COMMAND ${CMAKE_COMMAND} -E copy
   ${CMAKE_CURRENT_SOURCE_DIR}/press.mpg
-  ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/press.mpg)
+  $<TARGET_FILE_DIR:splash>/press.mpg)
 add_custom_command(
   TARGET splash POST_BUILD
   COMMAND ${CMAKE_COMMAND} -E copy
   ${CMAKE_CURRENT_SOURCE_DIR}/press.pov
-  ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/press.pov)
+  $<TARGET_FILE_DIR:splash>/press.pov)
 add_custom_command(
   TARGET splash POST_BUILD
   COMMAND ${CMAKE_COMMAND} -E copy
   ${CMAKE_CURRENT_SOURCE_DIR}/splash.png
-  ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/splash.png)
+  $<TARGET_FILE_DIR:splash>/splash.png)
 add_custom_command(
   TARGET splash POST_BUILD
   COMMAND ${CMAKE_COMMAND} -E copy
   ${CMAKE_CURRENT_SOURCE_DIR}/splash.pov
-  ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/splash.pov)
+  $<TARGET_FILE_DIR:splash>/splash.pov)
