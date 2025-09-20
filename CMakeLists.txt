@@ -167,3 +167,5 @@ endif()
 if(WIN32 AND wxWidgets_USE_STATIC)
   add_subdirectory(dll)
 endif()
+
+add_subdirectory(wxWidgetsBook)

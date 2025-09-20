@@ -1,0 +1,11 @@
+cmake_minimum_required(VERSION 3.15)
+project(wxWidgetsSamples LANGUAGES CXX)
+
+add_subdirectory(chap02)
+add_subdirectory(chap03)
+add_subdirectory(chap09)
+add_subdirectory(chap11)
+add_subdirectory(chap16)
+add_subdirectory(chap17)
+add_subdirectory(chap18)
+add_subdirectory(chap19)

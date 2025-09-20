@@ -1,0 +1,1 @@
+This directory contains most of the sample code from the book [Cross-Platform GUI Programming with wxWidgets](https://wxwidgets.org/docs/book/Cross-Platform%20GUI%20Programming%20with%20wxWidgets.pdf). Some basic improvements to the code have been made to ensure that it builds with wxWidgets 3.3.1, but it is not as up to date as the code for the other samples.
