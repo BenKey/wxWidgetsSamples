@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.15)
-project(html-about LANGUAGES CXX)
+project(html-printing LANGUAGES CXX)
 
 if(WIN32)
   file(GLOB SRC_FILES *.cpp *.h ${CMAKE_SOURCE_DIR}/*.rc ${CMAKE_SOURCE_DIR}/*.xpm)
@@ -14,6 +14,11 @@ endif()
 target_link_libraries(${PROJECT_NAME} PRIVATE ${wxWidgets_LIBRARIES})
 add_custom_command(
   TARGET ${PROJECT_NAME} POST_BUILD
-  COMMAND ${CMAKE_COMMAND} -E copy_directory 
-  ${CMAKE_CURRENT_SOURCE_DIR}/data
-  $<TARGET_FILE_DIR:html-about>/data)
+  COMMAND ${CMAKE_COMMAND} -E copy
+  ${CMAKE_CURRENT_SOURCE_DIR}/logo6.gif
+  $<TARGET_FILE_DIR:html-printing>/printing/logo6.gif)
+add_custom_command(
+  TARGET ${PROJECT_NAME} POST_BUILD
+  COMMAND ${CMAKE_COMMAND} -E copy
+  ${CMAKE_CURRENT_SOURCE_DIR}/test.htm
+  $<TARGET_FILE_DIR:html-printing>/printing/test.htm)
