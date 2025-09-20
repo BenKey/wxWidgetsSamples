@@ -212,7 +212,7 @@ MyFrame::MyFrame(const wxString& title, const wxPoint& pos, const wxSize& size)
 #if wxUSE_STATUSBAR
     html -> SetRelatedStatusBar(1);
 #endif // wxUSE_STATUSBAR
-    html -> LoadPage("html-virtual/start.htm");
+    html -> LoadPage("html-virtual-files/start.htm");
 }
 
 
