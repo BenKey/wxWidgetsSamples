@@ -133,8 +133,8 @@ enum
 // handlers) which process them. It can be also done at run-time, but for the
 // simple menu events like this the static method is much simpler.
 wxBEGIN_EVENT_TABLE(MyFrame, wxFrame)
-    EVT_MENU(AccessTest_Quit,  MyFrame::OnQuit)
-    EVT_MENU(AccessTest_Query,  MyFrame::OnQuery)
+    EVT_MENU(AccessTest_Quit, MyFrame::OnQuit)
+    EVT_MENU(AccessTest_Query, MyFrame::OnQuery)
     EVT_MENU(AccessTest_About, MyFrame::OnAbout)
 wxEND_EVENT_TABLE()
 
@@ -159,7 +159,9 @@ wxIMPLEMENT_APP(MyApp);
 bool MyApp::OnInit()
 {
     if ( !wxApp::OnInit() )
+    {
         return false;
+    }
 
 #if wxUSE_ACCESSIBILITY
     // Note: JAWS for Windows will only speak the context-sensitive
@@ -192,7 +194,9 @@ bool MyApp::OnInit()
 class FrameAccessible: public wxWindowAccessible
 {
 public:
-    FrameAccessible(wxWindow* win): wxWindowAccessible(win) {}
+    FrameAccessible(wxWindow* win): wxWindowAccessible(win)
+    {
+    }
 
             // Gets the name of the specified object.
     virtual wxAccStatus GetName(int childId, wxString* name) override
