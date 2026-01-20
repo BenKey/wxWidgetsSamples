@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.15)
+cmake_minimum_required(VERSION 3.25.0)
 project(nativdlg LANGUAGES CXX)
 
 if(WIN32)

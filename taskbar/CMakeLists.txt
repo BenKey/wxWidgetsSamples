@@ -1,17 +1,14 @@
-cmake_minimum_required(VERSION 3.15)
+cmake_minimum_required(VERSION 3.25.0)
 project(taskbar LANGUAGES CXX)
 
+file(GLOB RC_FILES ${CMAKE_SOURCE_DIR}/*.rc)
+file(GLOB SRC_FILES *.cpp *.h *.xpm ${CMAKE_SOURCE_DIR}/*.xpm)
 if(WIN32)
-  file(GLOB SRC_FILES *.cpp *.h ${CMAKE_SOURCE_DIR}/*.rc ${CMAKE_SOURCE_DIR}/*.xpm)
-else()
-  file(GLOB SRC_FILES *.cpp *.h ${CMAKE_SOURCE_DIR}/*.xpm)
+  list(APPEND SRC_FILES ${RC_FILES})
 endif()
-if(WIN32)
-  add_executable(${PROJECT_NAME} WIN32 ${SRC_FILES})
-else()
-  add_executable(${PROJECT_NAME} ${SRC_FILES})
-endif()
+add_executable(${PROJECT_NAME} WIN32 ${SRC_FILES})
 target_link_libraries(${PROJECT_NAME} PRIVATE ${wxWidgets_LIBRARIES})
+
 add_custom_command(
   TARGET ${PROJECT_NAME} POST_BUILD
   COMMAND ${CMAKE_COMMAND} -E copy

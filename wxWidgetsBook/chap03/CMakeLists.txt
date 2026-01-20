@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.15)
+cmake_minimum_required(VERSION 3.25.0)
 project(wxWidgetsBook-fontctrl LANGUAGES CXX)
 
 file(GLOB SRC_FILES *.cpp *.h *.xpm)

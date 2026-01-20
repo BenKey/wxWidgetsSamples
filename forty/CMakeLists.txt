@@ -1,17 +1,14 @@
-cmake_minimum_required(VERSION 3.15)
+cmake_minimum_required(VERSION 3.25.0)
 project(forty LANGUAGES CXX)
 
+file(GLOB RC_FILES *.rc)
+file(GLOB SRC_FILES *.cpp *.h *.ani *.gif *.xpm)
 if(WIN32)
-  file(GLOB SRC_FILES *.cpp *.h *.ani *.gif *.rc *.xpm)
-else()
-  file(GLOB SRC_FILES *.cpp *.h *.ani *.gif *.xpm)
+  list(APPEND SRC_FILES ${RC_FILES})
 endif()
-if(WIN32)
-  add_executable(${PROJECT_NAME} WIN32 ${SRC_FILES})
-else()
-  add_executable(${PROJECT_NAME} ${SRC_FILES})
-endif()
+add_executable(${PROJECT_NAME} WIN32 ${SRC_FILES})
 target_link_libraries(${PROJECT_NAME} PRIVATE ${wxWidgets_LIBRARIES})
+
 add_custom_command(
   TARGET ${PROJECT_NAME} POST_BUILD
   COMMAND ${CMAKE_COMMAND} -E copy
