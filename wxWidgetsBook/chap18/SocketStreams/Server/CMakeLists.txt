@@ -4,11 +4,11 @@ project(wxWidgetsBook-SocketStreams-server LANGUAGES CXX)
 cmake_path(GET CMAKE_CURRENT_SOURCE_DIR PARENT_PATH PARENT_DIR)
 
 file(GLOB RC_FILES *.rc)
-file(GLOB SRC_FILES *.cpp *.h *.xpm)
+file(GLOB SOURCE_FILES *.cpp *.h *.xpm)
 if(WIN32)
-  list(APPEND SRC_FILES ${RC_FILES})
+  list(APPEND SOURCE_FILES ${RC_FILES})
 endif()
-add_executable(${PROJECT_NAME} WIN32 ${SRC_FILES})
+add_executable(${PROJECT_NAME} WIN32 ${SOURCE_FILES})
 target_link_libraries(${PROJECT_NAME} PRIVATE ${wxWidgets_LIBRARIES})
 
 add_custom_command(

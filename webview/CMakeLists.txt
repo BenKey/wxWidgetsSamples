@@ -3,11 +3,11 @@ project(webview LANGUAGES CXX)
 
 if(wxWidgets_webview_FOUND)
   file(GLOB RC_FILES ${CMAKE_SOURCE_DIR}/*.rc)
-  file(GLOB SRC_FILES webview.cpp *.h ${CMAKE_SOURCE_DIR}/*.xpm)
+  file(GLOB SOURCE_FILES webview.cpp *.h ${CMAKE_SOURCE_DIR}/*.xpm)
   if(WIN32)
-    list(APPEND SRC_FILES ${RC_FILES})
+    list(APPEND SOURCE_FILES ${RC_FILES})
   endif()
-  add_executable(${PROJECT_NAME} WIN32 ${SRC_FILES})
+  add_executable(${PROJECT_NAME} WIN32 ${SOURCE_FILES})
   target_link_libraries(${PROJECT_NAME} PRIVATE ${wxWidgets_LIBRARIES})
 
   add_custom_command(

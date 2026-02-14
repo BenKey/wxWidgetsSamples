@@ -30,18 +30,18 @@ endif()
 project(minimal)
 
 # Define a variable containing a list of source files for the project
-set(SRC_FILES minimal.cpp)
+set(SOURCE_FILES minimal.cpp)
 
 if(WIN32)
   # Include a RC file for windows
-  list(APPEND SRC_FILES ../sample.rc)
+  list(APPEND SOURCE_FILES ../sample.rc)
 elseif(APPLE)
   # Add an icon for the apple .app file
-  list(APPEND SRC_FILES ../../src/osx/carbon/wxmac.icns)
+  list(APPEND SOURCE_FILES ../../src/osx/carbon/wxmac.icns)
 endif()
 
 # Define the build target for the executable
-add_executable(${PROJECT_NAME} WIN32 MACOSX_BUNDLE ${SRC_FILES})
+add_executable(${PROJECT_NAME} WIN32 MACOSX_BUNDLE ${SOURCE_FILES})
 # Link executable to the wxWidgets target
 target_link_libraries(${PROJECT_NAME} wxWidgets::wxWidgets)
 
