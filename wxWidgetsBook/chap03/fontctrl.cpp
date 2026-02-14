@@ -28,9 +28,9 @@ wxBEGIN_EVENT_TABLE(wxFontSelectorCtrl, wxControl)
 wxEND_EVENT_TABLE()
 
 const wxEventType wxEVT_COMMAND_FONT_SELECTION_CHANGED = wxNewEventType();
-IMPLEMENT_DYNAMIC_CLASS(wxFontSelectorCtrlEvent, wxNotifyEvent)
+wxIMPLEMENT_DYNAMIC_CLASS(wxFontSelectorCtrlEvent, wxNotifyEvent);
 
-IMPLEMENT_DYNAMIC_CLASS(wxFontSelectorCtrl, wxControl)
+wxIMPLEMENT_DYNAMIC_CLASS(wxFontSelectorCtrl, wxControl);
 
 bool wxFontSelectorCtrl::Create(wxWindow* parent, wxWindowID id, const wxPoint& pos, const wxSize& size, long style,
                                              const wxValidator& validator)
@@ -98,7 +98,7 @@ void wxFontSelectorCtrl::OnMouseEvent(wxMouseEvent& event)
     }
 }
 
-IMPLEMENT_DYNAMIC_CLASS(wxFontSelectorValidator, wxValidator)
+wxIMPLEMENT_DYNAMIC_CLASS(wxFontSelectorValidator, wxValidator);
 
 wxBEGIN_EVENT_TABLE(wxFontSelectorValidator, wxValidator)
 wxEND_EVENT_TABLE()

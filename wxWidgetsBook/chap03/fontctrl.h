@@ -24,7 +24,7 @@
 
 class wxFontSelectorCtrl: public wxControl
 {
-    DECLARE_DYNAMIC_CLASS(wxFontSelectorCtrl)
+    wxDECLARE_DYNAMIC_CLASS(wxFontSelectorCtrl);
     wxDECLARE_EVENT_TABLE();
 
 public:
@@ -88,7 +88,7 @@ public:
 
     virtual wxEvent *Clone() const { return new wxFontSelectorCtrlEvent(*this); }
 
-    DECLARE_DYNAMIC_CLASS(wxFontSelectorCtrlEvent);
+    wxDECLARE_DYNAMIC_CLASS(wxFontSelectorCtrlEvent);
 };
 
 typedef void (wxEvtHandler::*wxFontSelectorCtrlEventFunction)(wxFontSelectorCtrlEvent&);
@@ -99,7 +99,7 @@ typedef void (wxEvtHandler::*wxFontSelectorCtrlEventFunction)(wxFontSelectorCtrl
 
 extern const wxEventType wxEVT_COMMAND_FONT_SELECTION_CHANGED;
 
-#define EVT_FONT_SELECTION_CHANGED(id, fn) DECLARE_EVENT_TABLE_ENTRY( wxEVT_COMMAND_FONT_SELECTION_CHANGED, id, -1, (wxObjectEventFunction) (wxEventFunction) (wxFontSelectorCtrlEventFunction) & fn, (wxObject *) NULL ),
+#define EVT_FONT_SELECTION_CHANGED(id, fn) wxDECLARE_EVENT_TABLE_ENTRY( wxEVT_COMMAND_FONT_SELECTION_CHANGED, id, -1, (wxObjectEventFunction) (wxEventFunction) (wxFontSelectorCtrlEventFunction) & fn, (wxObject *) NULL );
 
 /*!
  * Validator for wxFontSelectorCtrl
@@ -107,7 +107,7 @@ extern const wxEventType wxEVT_COMMAND_FONT_SELECTION_CHANGED;
 
 class wxFontSelectorValidator: public wxValidator
 {
-DECLARE_DYNAMIC_CLASS(wxFontSelectorValidator)
+    wxDECLARE_DYNAMIC_CLASS(wxFontSelectorValidator);
 public:
     // Constructors
     wxFontSelectorValidator(wxFontData *val = NULL);
@@ -146,6 +146,4 @@ protected:
     bool CheckValidator() const ;
 };
 
-#endif
-    // _WX_FONTCTRL_H_
-
+#endif // _WX_FONTCTRL_H_
