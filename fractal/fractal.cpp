@@ -35,12 +35,32 @@ hack doesn't fix.
 
 #include <array>
 #include <chrono>
+#include <clocale>
 #include <cmath>
 #include <cstdint>
+#include <filesystem>
 #include <random>
 
 namespace
 {
+    constexpr bool IsWindows()
+    {
+#if defined(_WIN32) || defined(_WIN64)
+        return true;
+#else
+        return false;
+#endif
+    }
+
+    const char* GetLocaleNameForSetLocale()
+    {
+        if (IsWindows())
+        {
+            return ".UTF-8";
+        }
+        return "";
+    }
+
     std::mt19937& Rng()
     {
         static std::mt19937 rng{};
@@ -60,6 +80,22 @@ namespace
         std::uniform_int_distribution<int> dist{0, maxExclusive - 1};
         return dist(Rng());
     }
+
+    int BeforeMain()
+    {
+    #if defined(__WXGTK__)
+        namespace fs = std::filesystem;
+        wxString fontConfigPath{};
+        fs::path fontsDir{"/etc/fonts"};
+        if (!wxGetEnv("FONTCONFIG_PATH", &fontConfigPath) && fs::is_directory(fontsDir))
+        {
+            wxSetEnv("FONTCONFIG_PATH", wxString::FromUTF8(fontsDir.string()));
+        }
+    #endif
+        return 0;
+    }
+    int beforeMain = BeforeMain();
+
 }
 
 static int detail = 9; // CHANGE THIS... 7,8,9 etc
@@ -120,6 +156,10 @@ private:
 // `Main program' equivalent, creating windows and returning main app frame
 bool MyApp::OnInit()
 {
+    std::setlocale(LC_ALL, GetLocaleNameForSetLocale());
+#if defined(__WXGTK__)
+    GTKSuppressDiagnostics();
+#endif
     // Create the main frame window
     auto *frame{new MyFrame(nullptr, wxT("Fractal Mountains for wxWidgets"), wxDefaultPosition, wxSize(640, 480))};
 
