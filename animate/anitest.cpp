@@ -17,31 +17,65 @@
 // ---------------------------------------------------------------------------
 
 // For compilers that support precompilation, includes "wx/wx.h".
-#include "wx/wxprec.h"
-
+#include <wx/wxprec.h>
 
 #ifndef WX_PRECOMP
-    #include "wx/wx.h"
+#  include <wx/wx.h>
 #endif
 
 #ifndef wxHAS_IMAGES_IN_RESOURCES
-    #include "../sample.xpm"
+#  include "../sample.xpm"
 #endif
 
-#include "wx/aboutdlg.h"
-#include "wx/artprov.h"
-#include "wx/colordlg.h"
-#include "wx/wfstream.h"
+#include <wx/aboutdlg.h>
+#include <wx/artprov.h>
+#include <wx/colordlg.h>
+#include <wx/filename.h>
+#include <wx/stdpaths.h>
+#include <wx/wfstream.h>
 
 #include "anitest.h"
 
 #if !wxUSE_ANIMATIONCTRL
-    #error Cannot compile this sample if wxAnimationCtrl is not enabled
+#  error Cannot compile this sample if wxAnimationCtrl is not enabled
 #endif
 
 #ifdef wxHAS_NATIVE_ANIMATIONCTRL
-    #include "wx/generic/animate.h"
+#  include <wx/generic/animate.h>
 #endif
+
+namespace {
+wxString GetExecutableDir()
+{
+    wxFileName fn(wxStandardPaths::Get().GetExecutablePath());
+    return fn.GetPath();
+} 
+wxString GetAnimationPath(const wxString& filename)
+{
+    wxFileName fn{filename};
+    if (fn.IsAbsolute())
+    {
+        return filename;
+    }
+    wxString path{GetExecutableDir() + wxFileName::GetPathSeparator() + filename};
+    if (wxFileExists(path))
+    {
+        return path;
+    }
+    path = wxFileName::GetCwd() + wxFileName::GetPathSeparator() + filename;
+    if (wxFileExists(path))
+    {
+        return path;
+    }
+    path = wxStandardPaths::Get().GetResourcesDir() + wxFileName::GetPathSeparator() + filename;
+    if (wxFileExists(path))
+    {
+        return path;
+    }
+    // hope for the best
+    return filename;
+}
+}
 
 wxIMPLEMENT_APP(MyApp);
 
@@ -72,14 +106,12 @@ wxBEGIN_EVENT_TABLE(MyFrame, wxFrame)
 #ifdef wxHAS_NATIVE_ANIMATIONCTRL
     EVT_MENU(ID_USE_GENERIC, MyFrame::OnUseGeneric)
 #endif // wxHAS_NATIVE_ANIMATIONCTRL
-
     EVT_MENU(wxID_STOP, MyFrame::OnStop)
     EVT_MENU(wxID_ABOUT, MyFrame::OnAbout)
     EVT_MENU(wxID_EXIT, MyFrame::OnQuit)
 #if wxUSE_FILEDLG
     EVT_MENU(wxID_OPEN, MyFrame::OnOpen)
 #endif // wxUSE_FILEDLG
-
     EVT_SIZE(MyFrame::OnSize)
     EVT_UPDATE_UI(wxID_ANY, MyFrame::OnUpdateUI)
 wxEND_EVENT_TABLE()
@@ -95,14 +127,13 @@ wxEND_EVENT_TABLE()
 // Initialise this in OnInit, not statically
 bool MyApp::OnInit()
 {
-    if ( !wxApp::OnInit() )
+    if (!wxApp::OnInit())
+    {
         return false;
-
+    }
     // Create the main frame window
-
     MyFrame* frame = new MyFrame(nullptr, wxID_ANY, "Animation Demo");
     frame->Show(true);
-
     return true;
 }
 
@@ -111,16 +142,12 @@ bool MyApp::OnInit()
 // ---------------------------------------------------------------------------
 
 // Define my frame constructor
-MyFrame::MyFrame(wxWindow *parent,
-                 const wxWindowID id,
-                 const wxString& title)
-       : wxFrame(parent, id, title)
+MyFrame::MyFrame(wxWindow* parent, const wxWindowID id, const wxString& title):
+    wxFrame(parent, id, title)
 {
     SetIcon(wxICON(sample));
-
     // Make a menubar
     wxMenu *file_menu = new wxMenu;
-
 #if wxUSE_FILEDLG
     file_menu->Append(wxID_OPEN, "&Open Animation...\tCtrl+O", "Loads an animation");
 #endif // wxUSE_FILEDLG
@@ -130,19 +157,13 @@ MyFrame::MyFrame(wxWindow *parent,
     play_menu->Append(ID_PLAY, "Play\tCtrl+P", "Play the animation");
     play_menu->Append(wxID_STOP, "Stop\tCtrl+S", "Stop the animation");
     play_menu->AppendSeparator();
-    play_menu->Append(ID_SET_NULL_ANIMATION, "Set null animation",
-                      "Sets the empty animation in the control");
-    play_menu->AppendCheckItem(ID_SET_INACTIVE_BITMAP, "Set inactive bitmap",
-                               "Sets an inactive bitmap for the control");
-    play_menu->AppendCheckItem(ID_SET_NO_AUTO_RESIZE, "Set no autoresize",
-                               "Tells the control not to resize automatically");
-    play_menu->Append(ID_SET_BGCOLOR, "Set background colour...",
-                      "Sets the background colour of the control");
-
+    play_menu->Append(ID_SET_NULL_ANIMATION, "Set null animation",  "Sets the empty animation in the control");
+    play_menu->AppendCheckItem(ID_SET_INACTIVE_BITMAP, "Set inactive bitmap", "Sets an inactive bitmap for the control");
+    play_menu->AppendCheckItem(ID_SET_NO_AUTO_RESIZE, "Set no autoresize", "Tells the control not to resize automatically");
+    play_menu->Append(ID_SET_BGCOLOR, "Set background colour...", "Sets the background colour of the control");
 #ifdef wxHAS_NATIVE_ANIMATIONCTRL
     play_menu->AppendSeparator();
-    play_menu->AppendCheckItem(ID_USE_GENERIC, "Use &generic animation\tCtrl+G",
-                               "Selects whether native or generic version is used");
+    play_menu->AppendCheckItem(ID_USE_GENERIC, "Use &generic animation\tCtrl+G", "Selects whether native or generic version is used");
 #endif // wxHAS_NATIVE_ANIMATIONCTRL
 
     wxMenu *help_menu = new wxMenu;
@@ -165,29 +186,28 @@ MyFrame::MyFrame(wxWindow *parent,
     // resize the m_animationCtrl to fill its client area on
     // user resizes
     wxSizer *sz = new wxBoxSizer(wxVERTICAL);
-    sz->Add(new wxStaticText(this, wxID_ANY, "wxAnimationCtrl:"),
-            wxSizerFlags().Centre().Border());
+    sz->Add(new wxStaticText(this, wxID_ANY, "wxAnimationCtrl:"), wxSizerFlags().Centre().Border());
 
     m_animationCtrl = new wxAnimationCtrl(this, wxID_ANY);
 
     wxAnimationBundle animations;
-
-    wxAnimation throbber("throbber.gif");
+    wxAnimation throbber(GetAnimationPath("throbber.gif"));
     if (throbber.IsOk())
+    {
         animations.Add(throbber);
-    wxAnimation throbber2x("throbber_2x.gif");
+    }
+    wxAnimation throbber2x(GetAnimationPath("throbber_2x.gif"));
     if (throbber2x.IsOk())
+    {
         animations.Add(throbber2x);
-
+    }
     if (animations.IsOk())
     {
         m_animationCtrl->SetAnimation(animations);
         m_animationCtrl->Play();
     }
-
     sz->Add(m_animationCtrl, wxSizerFlags().Centre().Border());
     SetSizer(sz);
-
     SetSize(FromDIP(wxSize(500, 400)));
 }
 
@@ -218,15 +238,15 @@ void MyFrame::OnSetInactiveBitmap(wxCommandEvent& event)
         m_animationCtrl->SetInactiveBitmap(bmp);
     }
     else
+    {
         m_animationCtrl->SetInactiveBitmap(wxNullBitmap);
+    }
 }
 
 void MyFrame::OnSetNoAutoResize(wxCommandEvent& event)
 {
     // recreate the control with the new flag if necessary
-    long style = wxAC_DEFAULT_STYLE |
-                    (event.IsChecked() ? wxAC_NO_AUTORESIZE : 0);
-
+    long style = wxAC_DEFAULT_STYLE | (event.IsChecked() ? wxAC_NO_AUTORESIZE : 0);
     if (style != m_animationCtrl->GetWindowStyle())
     {
         RecreateAnimation(style);
@@ -235,11 +255,11 @@ void MyFrame::OnSetNoAutoResize(wxCommandEvent& event)
 
 void MyFrame::OnSetBgColor(wxCommandEvent& WXUNUSED(event))
 {
-    wxColour clr = wxGetColourFromUser(this, m_animationCtrl->GetBackgroundColour(),
-                                       "Choose the background colour");
-
+    wxColour clr = wxGetColourFromUser(this, m_animationCtrl->GetBackgroundColour(), "Choose the background colour");
     if (clr.IsOk())
+    {
         m_animationCtrl->SetBackgroundColour(clr);
+    }
 }
 
 void MyFrame::RecreateAnimation(long style)
@@ -253,27 +273,28 @@ void MyFrame::RecreateAnimation(long style)
     // now, for simplicity, just start without any animation in this case.
     wxAnimation curr;
 #ifdef wxHAS_NATIVE_ANIMATIONCTRL
-    if ( style != m_animationCtrl->GetWindowStyle() )
+    if (style != m_animationCtrl->GetWindowStyle())
+    {
         curr = m_animationCtrl->GetAnimation();
+    }
 #endif // wxHAS_NATIVE_ANIMATIONCTRL
 
     wxBitmap inactive = m_animationCtrl->GetInactiveBitmap();
     wxColour bg = m_animationCtrl->GetBackgroundColour();
 
     // destroy & rebuild
-    wxAnimationCtrlBase *old = m_animationCtrl;
+    wxAnimationCtrlBase* old = m_animationCtrl;
 
 #ifdef wxHAS_NATIVE_ANIMATIONCTRL
-    if ( GetMenuBar()->IsChecked(ID_USE_GENERIC) )
-        m_animationCtrl = new wxGenericAnimationCtrl(this, wxID_ANY, curr,
-                                                     wxDefaultPosition,
-                                                     wxDefaultSize,
-                                                     style);
+    if (GetMenuBar()->IsChecked(ID_USE_GENERIC))
+    {
+        m_animationCtrl = new wxGenericAnimationCtrl(this, wxID_ANY, curr, wxDefaultPosition, wxDefaultSize, style);
+    }
     else
 #endif // wxHAS_NATIVE_ANIMATIONCTRL
-    m_animationCtrl = new wxAnimationCtrl(this, wxID_ANY, curr,
-                                          wxDefaultPosition, wxDefaultSize,
-                                          style);
+    {
+        m_animationCtrl = new wxAnimationCtrl(this, wxID_ANY, curr, wxDefaultPosition, wxDefaultSize, style);
+    }
 
     GetSizer()->Replace(old, m_animationCtrl);
     delete old;
@@ -316,22 +337,18 @@ void MyFrame::OnAbout(wxCommandEvent& WXUNUSED(event) )
 #if wxUSE_FILEDLG
 void MyFrame::OnOpen(wxCommandEvent& WXUNUSED(event))
 {
-    wxFileDialog dialog(this, "Please choose an animation",
-                        wxEmptyString, wxEmptyString, "*.gif;*.ani;*.webp", wxFD_OPEN);
+    wxFileDialog dialog(this, "Please choose an animation",  wxEmptyString,  wxEmptyString,  "*.gif;*.ani;*.webp",  wxFD_OPEN);
     if (dialog.ShowModal() == wxID_OK)
     {
         wxString filename(dialog.GetPath());
-
         wxAnimation temp(m_animationCtrl->CreateAnimation());
         if (!temp.LoadFile(filename))
         {
             wxLogError("Sorry, this animation is not a valid format for wxAnimation.");
             return;
         }
-
         m_animationCtrl->SetAnimation(temp);
         m_animationCtrl->Play();
-
         GetSizer()->Layout();
     }
 }
@@ -343,4 +360,3 @@ void MyFrame::OnUpdateUI(wxUpdateUIEvent& WXUNUSED(event) )
     GetMenuBar()->FindItem(ID_PLAY)->Enable(!m_animationCtrl->IsPlaying());
     GetMenuBar()->FindItem(ID_SET_NO_AUTO_RESIZE)->Enable(!m_animationCtrl->IsPlaying());
 }
-

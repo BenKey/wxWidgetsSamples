@@ -9,8 +9,8 @@ if(WIN32)
 endif()
 add_executable(${PROJECT_NAME} WIN32 ${SOURCE_FILES})
 target_link_libraries(${PROJECT_NAME} PRIVATE ${wxWidgets_LIBRARIES})
-install(TARGETS ${PROJECT_NAME} DESTINATION ${CMAKE_INSTALL_BINDIR})
 
+install(TARGETS ${PROJECT_NAME} DESTINATION ${CMAKE_INSTALL_BINDIR})
 get_filename_component(GPP_DIR ${CMAKE_CXX_COMPILER} DIRECTORY)
 install(CODE "
     set(GPP_DIR [[${GPP_DIR}]])
