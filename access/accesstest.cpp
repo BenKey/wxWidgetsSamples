@@ -16,37 +16,34 @@
 // ----------------------------------------------------------------------------
 
 // For compilers that support precompilation, includes "wx/wx.h".
-#include "wx/wxprec.h"
+#include <wx/wxprec.h>
 
 
 // for all others, include the necessary headers (this file is usually all you
 // need because it includes almost all "standard" wxWidgets headers)
 #ifndef WX_PRECOMP
-    #include "wx/wx.h"
+#  include <wx/wx.h>
 #endif
 
 #if wxUSE_ACCESSIBILITY
-    #include "wx/access.h"
+#  include <wx/access.h>
 #endif // wxUSE_ACCESSIBILITY
 
-#include "wx/splitter.h"
-#include "wx/cshelp.h"
+#include <wx/splitter.h>
+#include <wx/cshelp.h>
 
-#ifdef __WXMSW__
-    #include "windows.h"
-    #include <ole2.h>
-    #include <oleauto.h>
-
-    #if wxUSE_ACCESSIBILITY
-        #include <oleacc.h>
-    #endif // wxUSE_ACCESSIBILITY
-
-    #include "wx/msw/ole/oleutils.h"
-    #include "wx/msw/winundef.h"
-
-    #ifndef OBJID_CLIENT
-        #define OBJID_CLIENT 0xFFFFFFFC
-    #endif
+#if defined(__WXMSW__)
+#  include <windows.h>
+#  include <ole2.h>
+#  include <oleauto.h>
+#  if wxUSE_ACCESSIBILITY
+#    include <oleacc.h>
+#  endif // wxUSE_ACCESSIBILITY
+#  include <wx/msw/ole/oleutils.h>
+#  include <wx/msw/winundef.h>
+#  if !defined(OBJID_CLIENT)
+#    define OBJID_CLIENT 0xFFFFFFFC
+#  endif
 #endif
 
 // ----------------------------------------------------------------------------
@@ -54,8 +51,8 @@
 // ----------------------------------------------------------------------------
 
 // the application icon (under Windows it is in resources)
-#ifndef wxHAS_IMAGES_IN_RESOURCES
-    #include "../sample.xpm"
+#if !defined(wxHAS_IMAGES_IN_RESOURCES)
+#  include "../sample.xpm"
 #endif
 
 // ----------------------------------------------------------------------------
@@ -66,14 +63,20 @@
 class MyApp : public wxApp
 {
 public:
+    MyApp() = default;
+    virtual ~MyApp() = default;
+    MyApp(const MyApp&) = delete;
+    MyApp(MyApp&&) = delete;
+    MyApp& operator=(const MyApp&) = delete;
+    MyApp& operator=(MyApp&&) = delete;
+
     // override base class virtuals
     // ----------------------------
 
     // this one is called on application startup and is a good place for the app
     // initialization (doing it here and not in the ctor allows to have an error
     // return: if OnInit() returns false, the application terminates)
-    virtual bool OnInit() override;
-
+    bool OnInit() override;
 };
 
 #if wxUSE_ACCESSIBILITY
@@ -83,8 +86,13 @@ class MyFrame : public wxFrame
 {
 public:
     // ctor(s)
+    MyFrame() = delete;
     MyFrame(const wxString& title, const wxPoint& pos, const wxSize& size,
             long style = wxDEFAULT_FRAME_STYLE);
+    MyFrame(const MyFrame&) = delete;
+    MyFrame(MyFrame&&) = delete;
+    MyFrame& operator=(const MyFrame&) = delete;
+    MyFrame& operator=(MyFrame&&) = delete;
 
     // event handlers (these functions should _not_ be virtual)
     void OnQuit(wxCommandEvent& event);
@@ -100,7 +108,7 @@ public:
     // Get info for a child (id > 0) or object (id == 0)
     void GetInfo(IAccessible* accessible, int id, wxString& name, wxString& role);
 private:
-    wxTextCtrl* m_textCtrl;
+    wxTextCtrl* m_textCtrl{nullptr};
 
     // any class wishing to process wxWidgets events must use this macro
     wxDECLARE_EVENT_TABLE();
@@ -194,9 +202,14 @@ bool MyApp::OnInit()
 class FrameAccessible: public wxWindowAccessible
 {
 public:
+    FrameAccessible() = delete;
     FrameAccessible(wxWindow* win): wxWindowAccessible(win)
     {
     }
+    FrameAccessible(const FrameAccessible&) = delete;
+    FrameAccessible(FrameAccessible&&) = delete;
+    FrameAccessible& operator=(const FrameAccessible&) = delete;
+    FrameAccessible& operator=(FrameAccessible&&) = delete;
 
             // Gets the name of the specified object.
     virtual wxAccStatus GetName(int childId, wxString* name) override
@@ -214,7 +227,12 @@ public:
 class ScrolledWindowAccessible: public wxWindowAccessible
 {
 public:
+    ScrolledWindowAccessible() = delete;
     ScrolledWindowAccessible(wxWindow* win): wxWindowAccessible(win) {}
+    ScrolledWindowAccessible(const ScrolledWindowAccessible&) = delete;
+    ScrolledWindowAccessible(ScrolledWindowAccessible&&) = delete;
+    ScrolledWindowAccessible& operator=(const ScrolledWindowAccessible&) = delete;
+    ScrolledWindowAccessible& operator=(ScrolledWindowAccessible&&) = delete;
 
             // Gets the name of the specified object.
     virtual wxAccStatus GetName(int childId, wxString* name) override
@@ -232,7 +250,12 @@ public:
 class SplitterWindowAccessible: public wxWindowAccessible
 {
 public:
+    SplitterWindowAccessible() = delete;
     SplitterWindowAccessible(wxWindow* win): wxWindowAccessible(win) {}
+    SplitterWindowAccessible(const SplitterWindowAccessible&) = delete;
+    SplitterWindowAccessible(SplitterWindowAccessible&&) = delete;
+    SplitterWindowAccessible& operator=(const SplitterWindowAccessible&) = delete;
+    SplitterWindowAccessible& operator=(SplitterWindowAccessible&&) = delete;
 
             // Gets the name of the specified object.
     virtual wxAccStatus GetName(int childId, wxString* name) override;
